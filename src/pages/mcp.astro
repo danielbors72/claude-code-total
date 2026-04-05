@@ -1,0 +1,17 @@
+---
+import DocsLayout from '../layouts/DocsLayout.astro';
+import CommandGrid from '../components/ui/CommandGrid';
+import { mcpCategories } from '../content/mcp';
+---
+
+<DocsLayout title="MCP Servers — Claude Code Total" activeSection="mcp">
+  <div class="space-y-6">
+    <div>
+      <h1 class="text-2xl font-bold mb-2">🔌 MCP Servers</h1>
+      <p class="text-surface-500 dark:text-surface-400">
+        Model Context Protocol (MCP) allows Claude Code to connect to external tools and data sources.
+      </p>
+    </div>
+    <CommandGrid client:visible categories={mcpCategories} />
+  </div>
+</DocsLayout>

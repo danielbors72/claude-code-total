@@ -1,0 +1,17 @@
+---
+import DocsLayout from '../layouts/DocsLayout.astro';
+import CommandGrid from '../components/ui/CommandGrid';
+import { configCategories } from '../content/configuration';
+---
+
+<DocsLayout title="Configuration — Claude Code Total" activeSection="configuration">
+  <div class="space-y-6">
+    <div>
+      <h1 class="text-2xl font-bold mb-2">⚙️ Configuration</h1>
+      <p class="text-surface-500 dark:text-surface-400">
+        Config files, key settings, and environment variables for customizing Claude Code.
+      </p>
+    </div>
+    <CommandGrid client:visible categories={configCategories} />
+  </div>
+</DocsLayout>

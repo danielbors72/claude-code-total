@@ -1,0 +1,17 @@
+---
+import DocsLayout from '../layouts/DocsLayout.astro';
+import CommandGrid from '../components/ui/CommandGrid';
+import { shortcutCategories } from '../content/shortcuts';
+---
+
+<DocsLayout title="Keyboard Shortcuts — Claude Code Total" activeSection="shortcuts">
+  <div class="space-y-6">
+    <div>
+      <h1 class="text-2xl font-bold mb-2">⌨️ Keyboard Shortcuts</h1>
+      <p class="text-surface-500 dark:text-surface-400">
+        All keyboard shortcuts and key combinations for Claude Code CLI. Click any item to see detailed explanation and usage tips.
+      </p>
+    </div>
+    <CommandGrid client:visible categories={shortcutCategories} />
+  </div>
+</DocsLayout>

@@ -1,0 +1,17 @@
+---
+import DocsLayout from '../layouts/DocsLayout.astro';
+import CommandGrid from '../components/ui/CommandGrid';
+import { cliCategories } from '../content/cli';
+---
+
+<DocsLayout title="CLI Reference — Claude Code Total" activeSection="cli">
+  <div class="space-y-6">
+    <div>
+      <h1 class="text-2xl font-bold mb-2">💻 CLI Reference</h1>
+      <p class="text-surface-500 dark:text-surface-400">
+        Complete reference for the Claude Code command-line interface: commands, flags, and permission modes.
+      </p>
+    </div>
+    <CommandGrid client:visible categories={cliCategories} />
+  </div>
+</DocsLayout>

@@ -1,0 +1,17 @@
+---
+import DocsLayout from '../layouts/DocsLayout.astro';
+import CommandGrid from '../components/ui/CommandGrid';
+import { commandCategories } from '../content/commands';
+---
+
+<DocsLayout title="Slash Commands — Claude Code Total" activeSection="commands">
+  <div class="space-y-6">
+    <div>
+      <h1 class="text-2xl font-bold mb-2">⚡ Slash Commands</h1>
+      <p class="text-surface-500 dark:text-surface-400">
+        Every slash command available in Claude Code CLI. Type <kbd>/</kbd> in the prompt to see autocomplete suggestions.
+      </p>
+    </div>
+    <CommandGrid client:visible categories={commandCategories} />
+  </div>
+</DocsLayout>

@@ -1,0 +1,17 @@
+---
+import DocsLayout from '../layouts/DocsLayout.astro';
+import CommandGrid from '../components/ui/CommandGrid';
+import { skillsCategories } from '../content/skills';
+---
+
+<DocsLayout title="Skills & Agents — Claude Code Total" activeSection="skills">
+  <div class="space-y-6">
+    <div>
+      <h1 class="text-2xl font-bold mb-2">🪄 Skills & Agents</h1>
+      <p class="text-surface-500 dark:text-surface-400">
+        Built-in skills, custom skills, agent system, and configuration options.
+      </p>
+    </div>
+    <CommandGrid client:visible categories={skillsCategories} />
+  </div>
+</DocsLayout>

@@ -1,0 +1,25 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Sidebar from '../components/layout/Sidebar.astro';
+import HeaderWithControls from '../components/layout/HeaderWithControls.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  activeSection?: string;
+}
+
+const { title, description, activeSection } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="min-h-screen flex flex-col">
+    <HeaderWithControls />
+    <div class="flex flex-1">
+      <Sidebar activeSection={activeSection} />
+      <main class="flex-1 min-w-0 px-6 py-8 lg:px-12 lg:py-10 max-w-4xl">
+        <slot />
+      </main>
+    </div>
+  </div>
+</BaseLayout>

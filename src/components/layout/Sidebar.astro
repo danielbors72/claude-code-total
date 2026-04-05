@@ -1,0 +1,58 @@
+---
+import { sections } from '../../lib/sections';
+
+interface Props {
+  activeSection?: string;
+}
+
+const { activeSection } = Astro.props;
+
+const iconMap: Record<string, string> = {
+  Rocket: '🚀',
+  Keyboard: '⌨️',
+  Terminal: '⚡',
+  Plug: '🔌',
+  Brain: '🧠',
+  Workflow: '🔄',
+  Settings: '⚙️',
+  Wand2: '🪄',
+  SquareTerminal: '💻',
+};
+---
+
+<!-- Mobile overlay -->
+<div id="sidebar-overlay" class="hidden fixed inset-0 z-30 bg-black/50 lg:hidden" onclick="this.classList.add('hidden'); document.getElementById('sidebar')?.classList.add('-translate-x-full');"></div>
+
+<aside
+  id="sidebar"
+  class="fixed lg:sticky top-14 z-30 w-64 h-[calc(100vh-3.5rem)] shrink-0 border-r border-surface-200 dark:border-surface-800 bg-white dark:bg-surface-950 overflow-y-auto -translate-x-full lg:translate-x-0 transition-transform no-print"
+>
+  <nav class="p-4 space-y-1">
+    {sections.map((section) => {
+      const isActive = activeSection === section.id;
+      return (
+        <a
+          href={section.path}
+          class:list={[
+            'flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
+            isActive
+              ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300'
+              : 'text-surface-600 dark:text-surface-400 hover:bg-surface-100 dark:hover:bg-surface-800 hover:text-surface-900 dark:hover:text-surface-100',
+          ]}
+        >
+          <span class="text-base">{iconMap[section.icon] || '📄'}</span>
+          <span>{section.title.en}</span>
+        </a>
+      );
+    })}
+  </nav>
+
+  <div class="p-4 mt-4 border-t border-surface-200 dark:border-surface-800">
+    <p class="text-xs text-surface-400 dark:text-surface-500">
+      Claude Code CLI Documentation
+    </p>
+    <p class="text-xs text-surface-400 dark:text-surface-500 mt-1">
+      Community Project
+    </p>
+  </div>
+</aside>

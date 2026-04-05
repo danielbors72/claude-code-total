@@ -1,0 +1,17 @@
+---
+import DocsLayout from '../layouts/DocsLayout.astro';
+import CommandGrid from '../components/ui/CommandGrid';
+import { workflowCategories } from '../content/workflows';
+---
+
+<DocsLayout title="Workflows & Tips — Claude Code Total" activeSection="workflows">
+  <div class="space-y-6">
+    <div>
+      <h1 class="text-2xl font-bold mb-2">🔄 Workflows & Tips</h1>
+      <p class="text-surface-500 dark:text-surface-400">
+        Practical workflows and power tips to get the most out of Claude Code.
+      </p>
+    </div>
+    <CommandGrid client:visible categories={workflowCategories} />
+  </div>
+</DocsLayout>
