@@ -110,13 +110,16 @@ export default function SearchModal() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Also listen for search trigger button
+  // Also listen for search trigger buttons (desktop + mobile)
   useEffect(() => {
+    const handler = () => setOpen(true);
     const btn = document.getElementById('search-trigger');
-    if (btn) {
-      const handler = () => setOpen(true);
-      btn.addEventListener('click', handler);
-      return () => btn.removeEventListener('click', handler);
+    const btnMobile = document.getElementById('search-trigger-mobile');
+    btn?.addEventListener('click', handler);
+    btnMobile?.addEventListener('click', handler);
+    return () => {
+      btn?.removeEventListener('click', handler);
+      btnMobile?.removeEventListener('click', handler);
     }
   }, []);
 

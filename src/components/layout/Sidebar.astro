@@ -33,6 +33,7 @@ const iconMap: Record<string, string> = {
       return (
         <a
           href={section.path}
+          onclick="if(window.innerWidth<1024){document.getElementById('sidebar')?.classList.add('-translate-x-full');document.getElementById('sidebar-overlay')?.classList.add('hidden');}"
           class:list={[
             'flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
             isActive
