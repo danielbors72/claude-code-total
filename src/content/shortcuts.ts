@@ -68,11 +68,11 @@ export const shortcutCategories: CommandCategory[] = [
         shortcut: 'Ctrl+O',
         oneLiner: {
           en: 'Toggle verbose/transcript mode',
-          ro: 'Comută modul verbose/vizualizare operații',
+          ro: 'Comută modul verbose/istoric detaliat',
         },
         explanation: {
           en: 'Switches into transcript mode where you can scroll through the full conversation, search it, and review everything Claude has done. Great for auditing tool calls and understanding what happened behind the scenes.',
-          ro: 'Te duce în modul de vizualizare a operațiilor, unde poți derula prin toată conversația, căuta în ea și vedea tot ce a făcut Claude în background. Perfect când vrei să verifici ce tool-uri a apelat și ce s-a întâmplat.',
+          ro: 'Te duce în istoricul detaliat al sesiunii, unde poți derula prin toată conversația, căuta în ea și vedea tot ce a făcut Claude în background. Perfect când vrei să verifici ce tool-uri a apelat și ce s-a întâmplat.',
         },
         category: 'general-controls',
         level: 'all',
@@ -503,7 +503,7 @@ export const shortcutCategories: CommandCategory[] = [
     id: 'transcript-mode',
     name: {
       en: 'Transcript Mode (Ctrl+O)',
-      ro: 'Vizualizare operații (Ctrl+O)',
+      ro: 'Istoric detaliat (Ctrl+O)',
     },
     icon: '📜',
     items: [
@@ -513,7 +513,7 @@ export const shortcutCategories: CommandCategory[] = [
         shortcut: '/',
         oneLiner: {
           en: 'Search transcript',
-          ro: 'Căutare în vizualizare',
+          ro: 'Căutare în istoric',
         },
         explanation: {
           en: 'Opens a search within the transcript view. Type a keyword to find specific parts of the conversation. Works like vim\'s / search — familiar to terminal users.',
@@ -549,7 +549,7 @@ export const shortcutCategories: CommandCategory[] = [
         },
         explanation: {
           en: 'Toggles between showing a condensed view and the full, unabridged transcript. Use it when you need to see everything, including tool calls and their full output that are normally collapsed.',
-          ro: 'Comută între vizualizarea condensată și cea completă. Folosește-l când ai nevoie să vezi totul, inclusiv apelurile de tool-uri și output-ul lor complet, care în mod normal sunt restrânse.',
+          ro: 'Comută între istoricul condensat și cel complet. Folosește-l când ai nevoie să vezi totul, inclusiv apelurile de tool-uri și output-ul lor complet, care în mod normal sunt restrânse.',
         },
         category: 'transcript-mode',
         level: 'advanced',

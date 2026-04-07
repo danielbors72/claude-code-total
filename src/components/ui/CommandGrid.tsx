@@ -58,7 +58,9 @@ export default function CommandGrid({ categories }: Props) {
           >
             {lang === 'en' ? 'All' : 'Toate'}
           </button>
-          {categories.map((cat) => (
+          {categories
+            .filter((cat) => cat.items.some((item) => isItemVisible(item.level)))
+            .map((cat) => (
             <button
               key={cat.id}
               onClick={() => setFilter(cat.id === filter ? null : cat.id)}
