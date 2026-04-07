@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import type { CommandCategory, Lang } from '../../lib/types';
+import type { CommandCategory, Lang, Level } from '../../lib/types';
 import CommandCard from './CommandCard';
 
 interface Props {
@@ -8,18 +8,40 @@ interface Props {
 
 export default function CommandGrid({ categories }: Props) {
   const [lang, setLang] = useState<Lang>('en');
+  const [level, setLevel] = useState<'beginner' | 'advanced'>('beginner');
   const [filter, setFilter] = useState<string | null>(null);
 
   useEffect(() => {
-    const stored = localStorage.getItem('cct-lang') as Lang | null;
-    if (stored === 'en' || stored === 'ro') setLang(stored);
+    const storedLang = localStorage.getItem('cct-lang') as Lang | null;
+    if (storedLang === 'en' || storedLang === 'ro') setLang(storedLang);
+    const storedLevel = localStorage.getItem('cct-level') as 'beginner' | 'advanced' | null;
+    if (storedLevel) setLevel(storedLevel);
+
     const onLangChange = (e: Event) => setLang((e as CustomEvent).detail);
+    const onLevelChange = (e: Event) => setLevel((e as CustomEvent).detail);
     window.addEventListener('cct-lang-change', onLangChange);
-    return () => window.removeEventListener('cct-lang-change', onLangChange);
+    window.addEventListener('cct-level-change', onLevelChange);
+    return () => {
+      window.removeEventListener('cct-lang-change', onLangChange);
+      window.removeEventListener('cct-level-change', onLevelChange);
+    };
   }, []);
 
   const t = (text: { en: string; ro: string }) => text[lang];
-  const filtered = filter ? categories.filter((c) => c.id === filter) : categories;
+
+  const isItemVisible = (itemLevel: Level) => {
+    if (itemLevel === 'all') return true;
+    if (level === 'advanced') return true;
+    return itemLevel === 'beginner';
+  };
+
+  // Filter categories and only show those with visible items
+  const filtered = (filter ? categories.filter((c) => c.id === filter) : categories)
+    .map((cat) => ({
+      ...cat,
+      visibleItems: cat.items.filter((item) => isItemVisible(item.level)),
+    }))
+    .filter((cat) => cat.visibleItems.length > 0);
 
   return (
     <div>
@@ -59,11 +81,11 @@ export default function CommandGrid({ categories }: Props) {
             <h2 className="text-lg font-semibold mb-3 flex items-center gap-2">
               {t(category.name)}
               <span className="text-xs font-normal text-surface-400 dark:text-surface-500">
-                ({category.items.length})
+                ({category.visibleItems.length})
               </span>
             </h2>
             <div className="space-y-2">
-              {category.items.map((item) => (
+              {category.visibleItems.map((item) => (
                 <CommandCard key={item.id} item={item} />
               ))}
             </div>
