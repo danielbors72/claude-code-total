@@ -1,5 +1,6 @@
 ---
 import DocsLayout from '../layouts/DocsLayout.astro';
+import QuickStartWizard from '../components/ui/QuickStartWizard';
 ---
 
 <DocsLayout title="Claude Code Total — Interactive Docs" activeSection="quickstart">
@@ -10,6 +11,9 @@ import DocsLayout from '../layouts/DocsLayout.astro';
         Interactive documentation for Claude Code CLI. Click any item to expand details and examples.
       </p>
     </div>
+
+    <!-- Quick Start Tutorial -->
+    <QuickStartWizard client:visible />
 
     <!-- Quick start cards -->
     <div class="grid gap-4 sm:grid-cols-2">
